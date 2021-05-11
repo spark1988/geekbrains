@@ -87,4 +87,48 @@ for count, value in enumerate(user_list):
 # Пользователь ввел число 1. Результат: 7, 5, 3, 3, 2, 1.
 # Набор натуральных чисел можно задать непосредственно в коде,
 # например, my_list = [7, 5, 3, 3, 2].
+products, order = [], 1
 
+while True:
+
+    Название = input('Введите название товара: ')
+
+    цена = input('Введите стоимость товара: ')
+
+    количество = input('Введите количество: ')
+
+    единицы = input('Введите единицы измерения: ')
+
+    products.append((
+        order,
+        {
+            'name': Название,
+            'price': цена,
+            'quantity': количество,
+            'units': единицы
+        }
+    ))
+
+    order += 1
+
+    question_to_continue = input('Формирование списка завершено? (Да/Нет)) ')
+    if question_to_continue == 'Да':
+        break
+
+print(products)
+
+analitics = {
+    'name': [],
+    'price': [],
+    'quantity': [],
+    'units': []
+}
+
+for number, description in products:
+    analitics['name'].append(description['name'])
+    analitics['price'].append(description['price'])
+    analitics['quantity'].append(description['quantity'])
+    analitics['units'].append(description['units'])
+
+
+print(analitics)
