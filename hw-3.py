@@ -83,6 +83,11 @@ def my_sum ():
             if numbers[number].lower() == 'q':
                 ex = True
                 break
+            elif numbers[number].isdigit() == False:
+                res = res + int(numbers[number-1]) - int(numbers[number-1])
+                ex = True
+                print('символы всё сломали')
+                break
             else:
                 res = res + int(numbers[number])
         sum_res = sum_res + res
