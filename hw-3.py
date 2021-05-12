@@ -84,9 +84,13 @@ def my_sum ():
                 ex = True
                 break
             elif numbers[number].isdigit() == False:
+                print('символы всё сломали!!')
+                ex = True
+                break
+            elif numbers[number].isdigit() == False:
                 res = res + int(numbers[number-1]) - int(numbers[number-1])
                 ex = True
-                print('символы всё сломали')
+                print('символы всё сломали, но программа подсчитала!')
                 break
             else:
                 res = res + int(numbers[number])
