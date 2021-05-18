@@ -118,15 +118,17 @@ print(numbers_cycle())
 # Подсказка: факториал числа n — произведение чисел от 1 до n.
 # # Например, факториал четырёх 4! = 1 * 2 * 3 * 4 = 24.
 def func():
-    n = int(input('введите n'))
-
+    n = int(input('введите n '))
     factorial = 1
 
-    for i in range(2, n + 1):
+    for i in range(1,n+1):
             factorial *= i
             yield factorial
 
-print((func()))
+result = []
 
 for b in func():
-    print(b)
+    result.append(b)
+
+for num, m in enumerate(result):
+    print(f'результат от факториала будет {num + 1} = {m}')
