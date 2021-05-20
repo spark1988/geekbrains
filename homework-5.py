@@ -60,3 +60,33 @@ with open('staff.txt', 'r') as calculation:
             print(f'{num[0]} к сожалению пока что получают меньше 20k, а именно {num[1]}')
     q = input('Хотите узнать среднюю зарплату?!')
     print(f'{int(sum(result)/len(result))} = средняя зп по организации')
+    
+    # 4. Создать (не программно) текстовый файл со следующим содержимым:
+# One 1
+# Two 2
+# Three 3
+# Four 4
+# Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные.
+# При этом английские числительные должны заменяться на русские.
+# Новый блок строк должен записываться в новый текстовый файл.
+with open('task4.txt', 'r') as initial:
+    new_file = []
+    for i in initial:
+        new_file.append(i.split())
+        print(i)
+
+dictionary = dict(new_file)
+dictionary.clear()
+
+
+for keys, values in dictionary.items():
+            print(keys, values)
+
+updates = {'Один': '1', 'Два': '2', 'Три': '3', 'Четыре': '4'}
+
+dictionary.update(updates)
+
+
+with open('task4updates.txt', 'w') as newdata:
+    for keys, values in dictionary.items():
+        print(newdata.write(keys + ' '), newdata.write(values + '\n'))
