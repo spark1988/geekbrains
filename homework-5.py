@@ -95,16 +95,25 @@ with open('task4updates.txt', 'w', encoding='utf-8') as newdata:
 # разделенных пробелами.
 # Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
 
-with open('calculator.txt', 'w+', encoding='utf-8') as calc:
-    i = 0
-    table = []
-    while i <=2:
-        n = int(input('введите число '))
-        table.append(n)
-        calc.write('Вы ввели ' + str(n) + '\n')
-        i += 1
-    calc.write(f'результат = {str(sum(table))}')
+# 6. Необходимо создать (не программно) текстовый файл,
+# где каждая строка описывает учебный предмет и наличие лекционных, практических
+# и лабораторных занятий по этому предмету и их количество.
+# Важно, чтобы для каждого предмета не обязательно были все типы занятий.
+# Сформировать словарь, содержащий название предмета и общее количество занятий по нему.
+# Вывести словарь на экран.
+# Примеры строк файла:
+# Информатика: 100(л) 50(пр) 20(лаб).
+# Физика: 30(л) — 10(лаб)
+# Физкультура: — 30(пр) —
+# Пример словаря:
+# {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}
+import re
+with open('plan-obucheniya.txt', 'r+', encoding='utf-8') as plan:
+    table = {}
 
-with open('calculator.txt', 'r', encoding='utf-8') as calc:
-    for line in calc.readlines():
-        print(line)
+    for i in plan.readlines():
+        b = [int(s) for s in i.split() if s.isdigit()]
+        key, val = i.strip().split(':')
+        table[key] = sum(b)
+    for key, val in table.items():
+        plan.write('{}:{}\n'.format(key, val))
