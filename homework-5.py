@@ -119,3 +119,38 @@ with open('plan-obucheniya.txt', 'r', encoding='utf-8') as plan:
     with open('plan-obucheniya.txt', 'w', encoding='utf-8') as plan:
         for key, val in table.items():
             plan.write('{}:{}\n'.format(key, val))
+# 7. Создать (не программно) текстовый файл, в котором каждая строка
+# должна содержать данные о фирме: название, форма собственности, выручка, издержки.
+# Пример строки файла: firm_1 ООО 10000 5000.
+# Необходимо построчно прочитать файл, вычислить прибыль каждой компании,
+# а также среднюю прибыль. Если фирма получила убытки, в расчет средней прибыли ее не включать.
+# Далее реализовать список. Он должен содержать словарь с фирмами и их прибылями,
+# а также словарь со средней прибылью. Если фирма получила убытки,
+# также добавить ее в словарь (со значением убытков).
+# Пример списка: [{“firm_1”: 5000, “firm_2”: 3000, “firm_3”: 1000},
+# {“average_profit”: 2000}].
+# Итоговый список сохранить в виде json-объекта в соответствующий файл.
+# Пример json-объекта:
+# [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
+#
+# Подсказка: использовать менеджеры контекста.
+import json
+
+with open('firms.txt', 'r+', encoding='utf-8') as firm:
+    table = {}
+    losers = {}
+    average = {}
+    for i in firm.readlines():
+            b = [int(s) for s in i.split() if s.isdigit()]
+            # print(b)
+            viruchka = b[0] - b[1]
+            table[i] = viruchka
+            if viruchka > 0:
+                average[i] = int(((b[0] - b[1])/2))
+            if viruchka < 0:
+                losers[i] = viruchka
+
+    out_file = open('json_out', 'w+')
+    json.dump(table, out_file)
+    json.dump(losers, out_file)
+    json.dump(average, out_file)
