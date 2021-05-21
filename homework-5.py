@@ -90,3 +90,21 @@ with open('task4updates.txt', 'w', encoding='utf-8') as newdata:
     for keys, values in dictionary.items():
         newdata.write(keys + ' ')
         newdata.write(values + '\n')
+        
+# 5. Создать (программно) текстовый файл, записать в него программно набор чисел,
+# разделенных пробелами.
+# Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
+
+with open('calculator.txt', 'w+', encoding='utf-8') as calc:
+    i = 0
+    table = []
+    while i <=2:
+        n = int(input('введите число '))
+        table.append(n)
+        calc.write('Вы ввели ' + str(n) + '\n')
+        i += 1
+    calc.write(f'результат = {str(sum(table))}')
+
+with open('calculator.txt', 'r', encoding='utf-8') as calc:
+    for line in calc.readlines():
+        print(line)
