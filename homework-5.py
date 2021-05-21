@@ -108,12 +108,14 @@ with open('task4updates.txt', 'w', encoding='utf-8') as newdata:
 # Пример словаря:
 # {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}
 
-with open('plan-obucheniya.txt', 'r+', encoding='utf-8') as plan:
-    table = {}
+table = {}
+with open('plan-obucheniya.txt', 'r', encoding='utf-8') as plan:
+
 
     for i in plan.readlines():
         b = [int(s) for s in i.split() if s.isdigit()]
         key, val = i.strip().split(':')
         table[key] = sum(b)
-    for key, val in table.items():
-        plan.write('{}:{}\n'.format(key, val))
+    with open('plan-obucheniya.txt', 'w', encoding='utf-8') as plan:
+        for key, val in table.items():
+            plan.write('{}:{}\n'.format(key, val))
