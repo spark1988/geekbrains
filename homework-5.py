@@ -73,20 +73,20 @@ with open('task4.txt', 'r') as initial:
     new_file = []
     for i in initial:
         new_file.append(i.split())
-        print(i)
+        # print(i)
 
 dictionary = dict(new_file)
+
 dictionary.clear()
 
-
-for keys, values in dictionary.items():
-            print(keys, values)
+# for keys, values in dictionary.items():
+#             print(keys, values)
 
 updates = {'Один': '1', 'Два': '2', 'Три': '3', 'Четыре': '4'}
 
 dictionary.update(updates)
 
-
-with open('task4updates.txt', 'w') as newdata:
+with open('task4updates.txt', 'w', encoding='utf-8') as newdata:
     for keys, values in dictionary.items():
-        print(newdata.write(keys + ' '), newdata.write(values + '\n'))
+        newdata.write(keys + ' ')
+        newdata.write(values + '\n')
