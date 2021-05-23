@@ -106,6 +106,17 @@ print(Jober.get_total_income())
 # должно выводиться сообщение о превышении скорости.
 # Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к
 # атрибутам, выведите результат. Выполните вызов методов и также покажите результат.
+# 4. Реализуйте базовый класс Car. У данного класса должны быть следующие атрибуты:
+# speed, color, name, is_police (булево).
+# А также методы: go, stop, turn(direction), которые должны сообщать, что машина поехала,
+# остановилась, повернула (куда). Опишите несколько дочерних классов:
+# TownCar, SportCar, WorkCar, PoliceCar.
+# Добавьте в базовый класс метод show_speed, который должен показывать текущую скорость
+# автомобиля. Для классов TownCar и WorkCar переопределите метод show_speed.
+# При значении скорости свыше 60 (TownCar) и 40 (WorkCar)
+# должно выводиться сообщение о превышении скорости.
+# Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к
+# атрибутам, выведите результат. Выполните вызов методов и также покажите результат.
 class Car():
     def __init__(self, speed, color, name, is_police):
         self.speed = speed
@@ -155,21 +166,28 @@ class PoliceCar(Car):
                     print('мигалка красная')
                     time.sleep(1)
                     print('остановите машину!')
-        def docs(self):
-                return 'ваши документики'
+
+
         def arrest(self):
 
             if worker_car.speed > 40:
-                print(f'Вы арестованы {worker_car.name} = {worker_car.speed}')
+                print(f'Вы арестованы {worker_car.name} т.к скорость = {worker_car.speed} км/час')
             if city_rider.speed > 60:
-                print(f'Вы довыделывались {city_rider.name} = {city_rider.speed}')
+                print(f'Вы довыделывались {city_rider.name} т.к ваша скорость = {city_rider.speed} км и арестованы')
 
+        def docs(self):
+            q = input('могу я увидеть ваши документы?!')
+            if q == 'да':
+                print('спасибо, с документами все в порядке')
+            else:
+                print('мы вынуждены вас задержать')
 
 
 police_car = PoliceCar(190, 'black', 'Lamborgini', True)
-city_rider = Towncar(120,'blue','Infinity QX65', False)
-worker_car = Workcar(60, 'yellow', 'Volvo Truck', False)
-worker_car.speed = 40
+city_rider = Towncar(140,'blue','Infinity QX56', False)
+worker_car = Workcar(80, 'yellow', 'Volvo Truck', False)
+print(police_car.sirens())
+print(police_car.docs())
+# worker_car.speed = 40
 print(worker_car.speed)
 print(police_car.arrest())
-
