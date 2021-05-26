@@ -31,14 +31,17 @@ class Matrix():
         d.extend([0, ] * (len(c) - len(d)))
         a.extend([0, ] * (len(b) - len(a)))
         b.extend([0, ] * (len(a) - len(b)))
-        return (list(map(sum, zip(a, b))) , list(map(sum, zip(c, d))))
+        data = []
+        data.append(list(map(sum, zip(a, c))))
+        data.append(list(map(sum, zip(b, d))))
+        return data
 
 matrica = [[1, 2, 4], [4, 5, 7]]
-matrica2 = [[1, 33, 22], [6, 4, 7]]
+matrica2 =[[4, 33, 22], [6, 4, 7]]
 
 
 
-m = Matrix(matrica2)
+m = Matrix(matrica)
 
 print(matrica + matrica2)
 print(m.__add__(matrica + matrica2))
