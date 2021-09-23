@@ -1,0 +1,45 @@
+SELECT 
+u.id,
+u.name,
+u.address,
+o.created,
+o.quantity,
+o.id as order_id,
+sd.status,
+sd.type_payment,
+sd.id as status_delivery_id
+FROM `users` u
+LEFT JOIN `orders` o ON u.id = o.user_id
+LEFT JOIN  `status_delivery` sd ON   sd.id = o.delivery
+ORDER BY sd.id DESC LIMIT 10;
+
+скрипты характерных выборок (включающие группировки, JOIN'ы, вложенные таблицы);
+
+SELECT 
+
+*,
+(SELECT price FROM `products` WHERE `products`.id_product = products_id) as prod_price,
+(SELECT quantity * price FROM `products` WHERE `products`.id_product = products_id) as total_price
+
+FROM ozon.goods_in_cart
+having total_price > 3000;
+
+
+SELECT *,
+name,
+lastname,
+COUNT(email)
+ FROM ozon.users
+ WHERE email LIKE '%gmail%'
+group by email
+with rollup;
+
+
+SELECT GROUP_CONCAT(id) as old_guys_id,
+GROUP_CONCAT(name) as names,
+GROUP_CONCAT(lastname) as lastnames,
+GROUP_CONCAT(YEAR(CURRENT_DATE) - YEAR(birthday)) AS ages,
+COUNT(id) as old_guys_total
+
+ FROM ozon.users
+ WHERE (YEAR(CURRENT_DATE) - YEAR(birthday)) > 45
